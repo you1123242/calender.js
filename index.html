@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>カレンダーアプリ</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="calendar-container">
+    <header class="calendar-header">
+      <div class="header-left">
+        <button id="prev-btn" class="nav-btn" title="前月へ">＜</button>
+        <div class="month-shortcuts">
+          <button id="btn-prev-month" class="shortcut-btn">先月</button>
+          <button id="btn-this-month" class="shortcut-btn">今月</button>
+          <button id="btn-next-month" class="shortcut-btn">来月</button>
+        </div>
+        <button id="next-btn" class="nav-btn" title="次月へ">＞</button>
+      </div>
+
+      <div class="header-right">
+        <div id="normal-action-btns" class="normal-action-btns">
+          <button id="share-calendar-btn" class="share-btn">🔗 共有URLをコピー</button>
+          <button id="start-copy-mode-btn" class="bulk-copy-btn">📋 予定を一括コピー</button>
+        </div>
+
+        <div id="copy-action-btns" class="copy-action-btns hidden">
+          <button id="add-more-event-btn" class="secondary-action-btn">＋ 別の予定も追加</button>
+          <button id="apply-copy-btn" class="primary-action-btn">完了 (0日選択)</button>
+          <button id="cancel-copy-btn" class="cancel-action-btn">キャンセル</button>
+        </div>
+      </div>
+    </header>
+
+    <div id="copy-banner" class="copy-banner hidden">
+      <div id="selected-events-summary" class="selected-events-summary">
+        コピー対象: <span id="event-summary-list">（未選択）</span>
+      </div>
+    </div>
+
+    <h2 id="current-month-title" class="month-title"></h2>
+
+    <!-- 7列（日〜土）の標準レイアウト -->
+    <div class="calendar-grid">
+      <div class="weekday sunday">日</div>
+      <div class="weekday">月</div>
+      <div class="weekday">火</div>
+      <div class="weekday">水</div>
+      <div class="weekday">木</div>
+      <div class="weekday">金</div>
+      <div class="weekday saturday">土</div>
+      <div id="calendar-days" class="days-container"></div>
+    </div>
+  </div>
+
+  <div id="event-modal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modal-date-title">予定の追加</h3>
+        <button id="close-modal-btn" class="close-btn">×</button>
+      </div>
+
+      <div id="event-list" class="event-list"></div>
+
+      <form id="event-form" class="event-form">
+        <h4>新しい予定を追加</h4>
+        <div class="time-range-group">
+          <div class="form-group">
+            <label for="event-start-time">開始時間（任意）</label>
+            <input type="time" id="event-start-time">
+          </div>
+          <span class="time-separator">〜</span>
+          <div class="form-group">
+            <label for="event-end-time">終了時間（任意）</label>
+            <input type="time" id="event-end-time">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="event-text">予定の内容</label>
+          <input type="text" id="event-text" placeholder="例: アルバイト / 授業" required>
+        </div>
+        <button type="submit" class="submit-btn">保存する</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
